@@ -30,9 +30,9 @@ export default defineConfig([
     ],
     plugins: [
       resolve({ preferBuiltins: true }),
-      // set target to node16.0 to use BigInt
+      // set target to node18.0 to use BigInt
       esbuild({
-        target: 'node16.0',
+        target: 'node18.0',
         sourceMap: true,
         minify: true,
       }),

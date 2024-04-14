@@ -7,7 +7,7 @@ concurrency:
 on: [push, pull_request]
 
 permissions:
-  contents: read # to fetch code (actions/checkout)
+  contents: write
 
 jobs:
   build:
@@ -28,6 +28,20 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Lint
@@ -35,6 +49,14 @@ jobs:
 
       - uses: jwalton/gh-find-current-pr@v1
         id: findPr
+        with:
+          # Can be "open", "closed", or "all".  Defaults to "open".
+          state: open
+      # This will echo "Your PR is 7", or be skipped if there is no current PR.
+      - run: echo "Your PR is ${PR}"
+        if: success() && steps.findPr.outputs.number
+        env:
+          PR: ${{ steps.findPr.outputs.pr }}
 
       - name: jest coverage report
         uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6

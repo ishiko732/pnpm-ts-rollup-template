@@ -1,0 +1,23 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "pnpm-ts-rollup-template",
+  "titleLink": "https://github.com/ishiko732/pnpm-ts-rollup-template",
+  "entryPoints": [
+    "./src/"
+  ],
+  "out": "./docs",
+  "navigationLinks": {
+    "Docs": "https://github.com/ishiko732/pnpm-ts-rollup-template",
+    "GitHub": "https://github.com/ishiko732/pnpm-ts-rollup-template"
+  },
+  "plugin": [
+    "typedoc-plugin-katex",
+    "typedoc-plugin-extras"
+  ],
+  "visibilityFilters":{
+    "protected": false,
+    "private": false,
+    "inherited": false,
+    "external": false
+  }
+}

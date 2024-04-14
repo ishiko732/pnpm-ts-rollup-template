@@ -1,0 +1,7 @@
+src
+.gitgnore
+test
+.eslintrc.json
+jest.config.js
+.prettierrc.json
+typedoc.json

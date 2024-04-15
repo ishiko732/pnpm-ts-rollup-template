@@ -17,11 +17,10 @@
     "publish::major": "npm version major",
     "publish::minor": "npm version minor",
     "publish::patch": "npm version patch",
-    "publish::test": "yalc publish",
+    "publish::test": "npx yalc publish",
     "docs:clean": "rimraf ./docs",
     "docs::geneator": "typedoc",
-    "docs": "pnpm docs:clean && pnpm docs::geneator",
-    "postinstall": "pnpm install -g yalc"
+    "docs": "pnpm docs:clean && pnpm docs::geneator"
   },
   "keywords": [
     "pnpm",

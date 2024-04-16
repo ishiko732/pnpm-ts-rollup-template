@@ -1,4 +1,4 @@
-name: CI
+name: ci
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -28,6 +28,10 @@ on:
       - '.npmignore'
       - 'LICENSE'
       - 'README.md'
+    branches:
+      - main
+      - master
+      - dev
 
 permissions:
   contents: read # to fetch code (actions/checkout)

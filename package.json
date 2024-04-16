@@ -9,7 +9,7 @@
     "lint": "eslint --fix src/ && prettier --write src/",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "jest --config=jest.config.ts --passWithNoTests",
-    "test::coverage": "jest --coverage",
+    "test::coverage": "jest --coverage --config=jest.config.ts",
     "build::clean": "rimraf ./dist",
     "build::proc": "rollup -c rollup.config.ts --configPlugin esbuild",
     "build::types": "pnpm build::clean && tsc --project ./tsconfig.json --declaration true",

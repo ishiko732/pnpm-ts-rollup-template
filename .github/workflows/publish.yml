@@ -8,7 +8,7 @@ on:
     workflows: [ci]
     types:
       - completed
-    branches: [main, master, dev]
+    branches: [main, master]
   release:
     types: [published]
 
@@ -44,35 +44,9 @@ jobs:
       - name: Build
         run: pnpm run build
 
-      - name: Extract branch name
-        id: extract_branch
-        run: |
-          if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
-            branch="${{ github.head_ref }}"
-          else
-            branch="${{ github.ref }}"
-          fi
-          branch="${branch#refs/heads/}"
-          echo "branch=${branch}" >> ${{ env.GITHUB_ENV }}
-
-      - name: Use Branch Name
-        run: echo ${{steps.extract_branch.outputs.branch}}
-
-      - name: Set Tag
-        id: set_tag
-        run: |
-          if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" || "${{ steps.extract_branch.outputs.branch }}" == "main" ]]; then
-            echo "::set-output name=tag::latest"
-          else
-            echo "::set-output name=tag::dev"
-          fi
-
-      - name: Use Tag
-        run: echo ${{ steps.set_tag.outputs.tag }}
-
       - name: Publish Package to NPM
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{secrets.npm_token}}
           provenance: true
-          tag: ${{steps.extract_branch.outputs.tag}}
+          tag: latest

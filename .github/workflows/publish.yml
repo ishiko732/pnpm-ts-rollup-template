@@ -1,14 +1,16 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-name: Publish Package[Beta]
+name: Publish Package
 
 on:
   workflow_run:
     workflows: [ci]
     types:
       - completed
-    branches: [dev]
+    branches: [main, master, dev]
+  release:
+    types: [published]
 
 jobs:
   publish-npm:
@@ -39,19 +41,28 @@ jobs:
       - name: Run tests and collect coverage
         run: pnpm run test::coverage
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          slug: ${{ env.GITHUB_REPOSITORY }}
-          fail_ci_if_error: true
-
       - name: Build
         run: pnpm run build
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Use Branch Name
+        run: echo "Branch:${ steps.extract_branch.outputs.branch}"
+
+      - name: set Tag
+        shell: bash
+        run: echo "tag=${(steps.repository.outputs.branch == 'master'||steps.repository.outputs.branch == 'main')? 'latest':'dev'}"
+        id: set_tag
+
+      - name: Use Tag
+        run: echo "Tag:${ steps.set_tag.outputs.tag}"
 
       - name: Publish Package to NPM
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{secrets.npm_token}}
           provenance: true
-          tag: beta
+          tag: ${{steps.extract_branch.outputs.tag}}

@@ -13,7 +13,7 @@ on:
       - dev
     paths-ignore:
       - '.devcontainer/**'
-      - '.github/**'
+      # - '.github/**'
       - '.vscode/**'
       - '.gitignore'
       - '.npmignore'
@@ -22,7 +22,7 @@ on:
   push:
     paths-ignore:
       - '.devcontainer/**'
-      - '.github/**'
+      # - '.github/**'
       - '.vscode/**'
       - '.gitignore'
       - '.npmignore'
@@ -78,5 +78,5 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: ishiko732/pnpm-ts-rollup-template
+          slug: ${{ env.GITHUB_REPOSITORY }}
           fail_ci_if_error: true

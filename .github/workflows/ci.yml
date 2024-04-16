@@ -46,20 +46,9 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Lint
         run: pnpm run lint
-
-      - uses: jwalton/gh-find-current-pr@v1
-        id: findPr
+        
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
         with:
-          # Can be "open", "closed", or "all".  Defaults to "open".
-          state: open
-      # This will echo "Your PR is 7", or be skipped if there is no current PR.
-      - run: echo "Your PR is ${PR}"
-        if: success() && steps.findPr.outputs.number
-        env:
-          PR: ${{ steps.findPr.outputs.pr }}
-
-      - name: jest coverage report
-        uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          prnumber: ${{ steps.findPr.outputs.number }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: ishiko732/pnpm-ts-rollup-template

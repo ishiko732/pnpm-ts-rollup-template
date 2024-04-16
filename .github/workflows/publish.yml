@@ -52,13 +52,17 @@ jobs:
       - name: Use Branch Name
         run: echo ${{steps.extract_branch.outputs.branch}}
 
-      - name: set Tag
-        shell: bash
-        run: echo "tag=${(steps.repository.outputs.branch == 'master'||steps.repository.outputs.branch == 'main')? 'latest':'dev'}"
+      - name: Set Tag
         id: set_tag
+        run: |
+          if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" || "${{ steps.extract_branch.outputs.branch }}" == "main" ]]; then
+            echo "::set-output name=tag::latest"
+          else
+            echo "::set-output name=tag::dev"
+          fi
 
       - name: Use Tag
-        run: echo ${{steps.set_tag.outputs.tag}}
+        run: echo ${{ steps.set_tag.outputs.tag }}
 
       - name: Publish Package to NPM
         uses: JS-DevTools/npm-publish@v2

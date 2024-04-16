@@ -46,8 +46,15 @@ jobs:
 
       - name: Extract branch name
         shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
         id: extract_branch
+        run: |
+          if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then
+            branch="${{ github.head_ref }}"
+          else
+            branch="${{ github.ref }}"
+          fi
+          branch="${branch#refs/heads/}"
+          echo "branch=${branch}" >> ${{ env.GITHUB_ENV }}
 
       - name: Use Branch Name
         run: echo ${{steps.extract_branch.outputs.branch}}

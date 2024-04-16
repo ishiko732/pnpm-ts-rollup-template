@@ -1,11 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  workflow_run:
-    workflows: [ci]
-    types:
-      - completed
-    branches: [main, master]
+  push:
+    branches:
+      - master
+      - main
 
 permissions:
   contents: write

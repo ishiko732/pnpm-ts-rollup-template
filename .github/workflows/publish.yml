@@ -45,7 +45,6 @@ jobs:
         run: pnpm run build
 
       - name: Extract branch name
-        shell: bash
         id: extract_branch
         run: |
           if [[ "${{ github.ref }}" == "refs/tags/"* ]]; then

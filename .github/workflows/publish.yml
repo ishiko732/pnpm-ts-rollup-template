@@ -50,7 +50,7 @@ jobs:
         id: extract_branch
 
       - name: Use Branch Name
-        run: echo "Branch:${ steps.extract_branch.outputs.branch}"
+        run: echo ${{steps.extract_branch.outputs.branch}}
 
       - name: set Tag
         shell: bash
@@ -58,7 +58,7 @@ jobs:
         id: set_tag
 
       - name: Use Tag
-        run: echo "Tag:${ steps.set_tag.outputs.tag}"
+        run: echo ${{steps.set_tag.outputs.tag}}
 
       - name: Publish Package to NPM
         uses: JS-DevTools/npm-publish@v2

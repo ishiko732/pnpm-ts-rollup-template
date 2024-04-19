@@ -1,7 +1,6 @@
 import TestDequeue from './test';
 
-export function hello() {
-  return 'Hello World';
-}
+export * from "./hello";
+export * from './test';
 
 console.log(TestDequeue());

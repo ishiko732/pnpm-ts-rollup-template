@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.cjs",
+  "umd": "dist/index.umd.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
+    "watch": "nodemon",
     "lint": "eslint --fix src/ && prettier --write src/",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "jest --config=jest.config.ts --passWithNoTests",

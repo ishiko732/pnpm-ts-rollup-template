@@ -55,4 +55,23 @@ export default defineConfig([
     ],
     external: [],
   },
+  {
+    input: 'src/index.ts',
+    output: {
+      file: 'dist/index.umd.js',
+      format: 'umd',
+      name: 'tmp',
+      sourcemap: true,
+    },
+    plugins: [
+      resolve(),
+      esbuild({
+        target: 'es2017',
+        // minify: true,
+        sourceMap: true,
+      }),
+      commonjs(),
+    ],
+    external: [],
+  },
 ]);

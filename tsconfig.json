@@ -13,9 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "allowJs": true,
     "outDir": "./dist"
   },
-  "include": ["src"],
+  "include": ["src", "src/global.d.ts"],
   "exclude": ["node_modules", "**/__tests__/*"],
   "detectCycles": true,
   "ts-node": {

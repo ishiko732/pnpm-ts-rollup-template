@@ -71,6 +71,26 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with: 
+          targets: wasm32-unknown-unknown
+
+      - name: Set up cargo cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+      
+      - name: Run checks
+        run: ./check.sh
 
       - name: Lint
         run: pnpm run lint

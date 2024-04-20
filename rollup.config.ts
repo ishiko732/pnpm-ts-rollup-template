@@ -3,24 +3,26 @@ import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts';
+import rust from '@wasm-tool/rollup-plugin-rust';
 
 export default defineConfig([
   {
     input: {
       index: 'src/index.ts',
+      rust: 'Cargo.toml',
     },
     output: [
-      {
-        dir: 'dist',
-        entryFileNames: '[name].cjs',
-        format: 'cjs',
-        sourcemap: true,
-        exports: 'named',
-        footer: ({ exports }) =>
-          exports.length > 0
-            ? 'module.exports = Object.assign(exports.default || {}, exports)'
-            : '',
-      },
+      // {
+      //   dir: 'dist',
+      //   entryFileNames: '[name].cjs',
+      //   format: 'cjs',
+      //   sourcemap: true,
+      //   exports: 'named',
+      //   footer: ({ exports }) =>
+      //     exports.length > 0
+      //       ? 'module.exports = Object.assign(exports.default || {}, exports)'
+      //       : '',
+      // },
       {
         dir: 'dist',
         entryFileNames: '[name].mjs',
@@ -34,9 +36,12 @@ export default defineConfig([
       esbuild({
         target: 'node18.0',
         sourceMap: true,
-        minify: true,
+        // minify: true,
       }),
       commonjs(),
+      rust({
+        serverPath: '/'
+      }),
     ],
     external: [],
   },
@@ -55,23 +60,26 @@ export default defineConfig([
     ],
     external: [],
   },
-  {
-    input: 'src/index.ts',
-    output: {
-      file: 'dist/index.umd.js',
-      format: 'umd',
-      name: 'tmp',
-      sourcemap: true,
-    },
-    plugins: [
-      resolve(),
-      esbuild({
-        target: 'es2017',
-        // minify: true,
-        sourceMap: true,
-      }),
-      commonjs(),
-    ],
-    external: [],
-  },
+  // {
+  //   input: 'src/index.ts',
+  //   output: {
+  //     file: 'dist/index.umd.js',
+  //     format: 'umd',
+  //     name: 'tmp',
+  //     sourcemap: true,
+  //   },
+  //   plugins: [
+  //     resolve(),
+  //     esbuild({
+  //       // target: 'es2017',
+  //       // minify: true,
+  //       sourceMap: true,
+  //     }),
+  //     commonjs(),
+  //     rust({
+  //       inlineWasm: true,
+  //     }),
+  //   ],
+  //   external: [],
+  // },
 ]);

@@ -5,6 +5,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts';
 import { wasm } from '@rollup/plugin-wasm';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default defineConfig([
   {
     input: {
@@ -35,7 +37,7 @@ export default defineConfig([
       esbuild({
         target: 'node18.0',
         sourceMap: true,
-        minify: true,
+        minify: isProduction,
       }),
       commonjs(),
       wasm({
@@ -66,15 +68,15 @@ export default defineConfig([
       format: 'umd',
       name: 'tmp',
       sourcemap: true,
-      globals:{
-        'fsrs-browser': 'fsrs-browser'
-      }
+      globals: {
+        'fsrs-browser': 'fsrs-browser',
+      },
     },
     plugins: [
       resolve(),
       esbuild({
         target: 'es2017',
-        // minify: true,
+        minify: isProduction,
         sourceMap: true,
       }),
       commonjs(),

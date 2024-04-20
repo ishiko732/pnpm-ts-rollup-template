@@ -1,0 +1,1 @@
+declare module 'fsrs-browser/fsrs_browser_bg.wasm';

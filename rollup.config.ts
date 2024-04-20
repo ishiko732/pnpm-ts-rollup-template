@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts';
+import { wasm } from '@rollup/plugin-wasm';
 
 export default defineConfig([
   {
@@ -37,8 +38,11 @@ export default defineConfig([
         minify: true,
       }),
       commonjs(),
+      wasm({
+        targetEnv: 'auto-inline',
+      }),
     ],
-    external: [],
+    external: ['fsrs-browser'],
   },
   {
     input: 'src/index.ts',
@@ -62,6 +66,9 @@ export default defineConfig([
       format: 'umd',
       name: 'tmp',
       sourcemap: true,
+      globals:{
+        'fsrs-browser': 'fsrs-browser'
+      }
     },
     plugins: [
       resolve(),
@@ -71,7 +78,10 @@ export default defineConfig([
         sourceMap: true,
       }),
       commonjs(),
+      wasm({
+        targetEnv: 'auto-inline',
+      }),
     ],
-    external: [],
+    external: ['fsrs-browser'],
   },
 ]);

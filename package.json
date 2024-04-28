@@ -8,6 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "watch": "nodemon",
+    "debug:rust":"cp ./debug/index.html ./dist/ && npx http-server ./dist/",
     "lint": "eslint --fix src/ && prettier --write src/",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "jest --config=jest.config.ts --passWithNoTests",
@@ -40,6 +41,7 @@
     "@types/seedrandom": "^3.0.8",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "@wasm-tool/rollup-plugin-rust": "^2.4.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "jest": "^29.7.0",

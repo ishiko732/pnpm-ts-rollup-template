@@ -3,6 +3,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts';
+import { wasm } from '@rollup/plugin-wasm';
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default defineConfig([
   {
@@ -34,11 +37,14 @@ export default defineConfig([
       esbuild({
         target: 'node18.0',
         sourceMap: true,
-        minify: true,
+        minify: isProduction,
       }),
       commonjs(),
+      wasm({
+        targetEnv: 'auto-inline',
+      }),
     ],
-    external: [],
+    external: ['fsrs-browser'],
   },
   {
     input: 'src/index.ts',
@@ -62,16 +68,22 @@ export default defineConfig([
       format: 'umd',
       name: 'tmp',
       sourcemap: true,
+      globals: {
+        'fsrs-browser': 'fsrs-browser',
+      },
     },
     plugins: [
       resolve(),
       esbuild({
         target: 'es2017',
-        // minify: true,
+        minify: isProduction,
         sourceMap: true,
       }),
       commonjs(),
+      wasm({
+        targetEnv: 'auto-inline',
+      }),
     ],
-    external: [],
+    external: ['fsrs-browser'],
   },
 ]);

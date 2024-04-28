@@ -7,12 +7,6 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Open index.html-cjs",
-      "url": "http://localhost:5500/debug/index.cjs.html"
-    },
-    {
-      "type": "chrome",
-      "request": "launch",
       "name": "Open index.html-esm",
       "url": "http://localhost:5500/debug/index.esm.html"
     },

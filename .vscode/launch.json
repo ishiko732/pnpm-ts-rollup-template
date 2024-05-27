@@ -15,6 +15,14 @@
       "request": "launch",
       "name": "Open index.html-umd",
       "url": "http://localhost:5500/debug/index.umd.html"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Node: Nodemon",
+      "processId": "${command:PickProcess}",
+      "restart": true,
+      "protocol": "inspector"
     }
   ]
 }

@@ -4,9 +4,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["esnext", "dom", "dom.iterable"],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@app/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@paths/*": ["./src/paths/*"],
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,

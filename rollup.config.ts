@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 import commonjs from '@rollup/plugin-commonjs';
 import dts from 'rollup-plugin-dts';
+import tsConfigPaths from 'rollup-plugin-tsconfig-paths';
 
 export default defineConfig([
   {
@@ -29,6 +30,7 @@ export default defineConfig([
       },
     ],
     plugins: [
+      tsConfigPaths(),
       resolve({ preferBuiltins: true }),
       // set target to node18.0 to use BigInt
       esbuild({
@@ -64,6 +66,7 @@ export default defineConfig([
       sourcemap: true,
     },
     plugins: [
+      tsConfigPaths(),
       resolve(),
       esbuild({
         target: 'es2017',

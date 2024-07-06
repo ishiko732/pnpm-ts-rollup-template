@@ -8,7 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "watch": "nodemon",
-    "lint": "standard './src/**' && standard './__tests__/**'",
+    "lint": "standard ./src/**/*.ts ./__tests__/**/*.ts",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "pnpm run lint && jest --config=jest.config.ts --passWithNoTests",
     "test::coverage": "jest --coverage --config=jest.config.ts",

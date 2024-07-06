@@ -1,3 +1,3 @@
-export default function TestPaths() {
-  return [123, 23];
+export default function TestPaths () {
+  return [123, 23]
 }

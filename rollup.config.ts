@@ -1,14 +1,14 @@
-import { defineConfig } from 'rollup';
-import resolve from '@rollup/plugin-node-resolve';
-import esbuild from 'rollup-plugin-esbuild';
-import commonjs from '@rollup/plugin-commonjs';
-import dts from 'rollup-plugin-dts';
-import tsConfigPaths from 'rollup-plugin-tsconfig-paths';
+import { defineConfig } from 'rollup'
+import resolve from '@rollup/plugin-node-resolve'
+import esbuild from 'rollup-plugin-esbuild'
+import commonjs from '@rollup/plugin-commonjs'
+import dts from 'rollup-plugin-dts'
+import tsConfigPaths from 'rollup-plugin-tsconfig-paths'
 
 export default defineConfig([
   {
     input: {
-      index: 'src/index.ts',
+      index: 'src/index.ts'
     },
     output: [
       {
@@ -20,14 +20,14 @@ export default defineConfig([
         footer: ({ exports }) =>
           exports.length > 0
             ? 'module.exports = Object.assign(exports.default || {}, exports)'
-            : '',
+            : ''
       },
       {
         dir: 'dist',
         entryFileNames: '[name].mjs',
         format: 'esm',
-        sourcemap: true,
-      },
+        sourcemap: true
+      }
     ],
     plugins: [
       tsConfigPaths(),
@@ -36,26 +36,26 @@ export default defineConfig([
       esbuild({
         target: 'node18.0',
         sourceMap: true,
-        minify: true,
+        minify: true
       }),
-      commonjs(),
+      commonjs()
     ],
-    external: [],
+    external: []
   },
   {
     input: 'src/index.ts',
     output: {
       file: 'dist/index.d.ts',
-      format: 'esm',
+      format: 'esm'
     },
     plugins: [
       dts({
         // https://github.com/Swatinem/rollup-plugin-dts/issues/143
         compilerOptions: { preserveSymlinks: false },
-        respectExternal: true,
-      }),
+        respectExternal: true
+      })
     ],
-    external: [],
+    external: []
   },
   {
     input: 'src/index.ts',
@@ -63,7 +63,7 @@ export default defineConfig([
       file: 'dist/index.umd.js',
       format: 'umd',
       name: 'tmp',
-      sourcemap: true,
+      sourcemap: true
     },
     plugins: [
       tsConfigPaths(),
@@ -71,10 +71,10 @@ export default defineConfig([
       esbuild({
         target: 'es2017',
         // minify: true,
-        sourceMap: true,
+        sourceMap: true
       }),
-      commonjs(),
+      commonjs()
     ],
-    external: [],
-  },
-]);
+    external: []
+  }
+])

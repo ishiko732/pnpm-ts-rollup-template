@@ -1,4 +1,3 @@
-import { JestConfigWithTsJest } from 'ts-jest';
 export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -7,11 +6,11 @@ export default {
   coverageReporters: ['text', 'cobertura'],
   coverageThreshold: {
     global: {
-      lines: 80,
-    },
+      lines: 80
+    }
   },
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1',
-    '@paths/(.*)': '<rootDir>/src/paths/$1',
-  },
-} as JestConfigWithTsJest;
+    '@paths/(.*)': '<rootDir>/src/paths/$1'
+  }
+}

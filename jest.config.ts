@@ -10,4 +10,8 @@ export default {
       lines: 80,
     },
   },
+  moduleNameMapper: {
+    '@/(.*)': '<rootDir>/src/$1',
+    '@paths/(.*)': '<rootDir>/src/paths/$1',
+  },
 } as JestConfigWithTsJest;

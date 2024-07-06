@@ -22,7 +22,26 @@
       "name": "Node: Nodemon",
       "processId": "${command:PickProcess}",
       "restart": true,
-      "protocol": "inspector"
-    }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "app",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "env": {
+        "DEBUG": "*",
+        "NODE_ENV": "development",
+      },
+      "outputCapture": "std",
+      "runtimeExecutable": "nodemon",
+      "restart": true,
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "${workspaceFolder}/src/index.ts"
+      ],
+    },
   ]
 }

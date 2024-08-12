@@ -10,7 +10,7 @@
     "watch": "nodemon",
     "lint": "standard ./src/**/*.ts ./__tests__/**/*.ts",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
-    "test": "pnpm run lint && jest --config=jest.config.ts --passWithNoTests",
+    "test": "jest --config=jest.config.ts --passWithNoTests",
     "test::coverage": "jest --coverage --config=jest.config.ts",
     "build::clean": "rimraf ./dist",
     "build::proc": "rollup -c rollup.config.ts --configPlugin esbuild",

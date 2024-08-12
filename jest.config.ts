@@ -4,7 +4,7 @@ import { compilerOptions } from './tsconfig.json';
 const jestConfig: JestConfigWithTsJest = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['**/__tests__/*.js?(x)', '**/__tests__/*.ts?(x)'],
+  testMatch: ['**/*.(test|spec).ts?(x)'],
   collectCoverage: true,
   coverageReporters: ['text', 'cobertura'],
   coverageThreshold: {

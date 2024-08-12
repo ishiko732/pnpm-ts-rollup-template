@@ -8,6 +8,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "watch": "nodemon",
+    "lint::fix": "standard ./src/**/*.ts ./__tests__/**/*.ts --fix",
     "lint": "standard ./src/**/*.ts ./__tests__/**/*.ts",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "jest --config=jest.config.ts --passWithNoTests",
@@ -55,5 +56,12 @@
     "typedoc-plugin-extras": "^3.0.0",
     "typedoc-plugin-katex": "^0.1.2",
     "typescript": "^5.4.5"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "expect",
+      "test"
+    ]
   }
 }

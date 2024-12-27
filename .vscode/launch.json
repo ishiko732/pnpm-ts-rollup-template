@@ -21,27 +21,23 @@
       "request": "attach",
       "name": "Node: Nodemon",
       "processId": "${command:PickProcess}",
-      "restart": true,
+      "restart": true
     },
     {
       "type": "node",
       "request": "launch",
       "name": "app",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "env": {
         "DEBUG": "*",
-        "NODE_ENV": "development",
+        "NODE_ENV": "development"
       },
       "outputCapture": "std",
-      "runtimeExecutable": "nodemon",
+      "runtimeExecutable": "tsx",
       "restart": true,
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
-      "args": [
-        "${workspaceFolder}/src/index.ts"
-      ],
-    },
+      "args": ["watch", "${workspaceFolder}/src/index.ts"]
+    }
   ]
 }

@@ -7,7 +7,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "watch": "nodemon",
+    "watch": "tsx --watch ./src/index.ts",
     "lint": "standard ./src/**/*.ts ./__tests__/**/*.ts",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "pnpm run lint && jest --config=jest.config.ts --passWithNoTests",
@@ -34,26 +34,26 @@
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.7",
-    "@types/seedrandom": "^3.0.8",
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.10",
     "eslint-config-prettier": "^9.1.0",
     "jest": "^29.7.0",
-    "rimraf": "^5.0.5",
-    "rollup": "^4.14.2",
-    "rollup-plugin-dts": "^6.1.0",
+    "rimraf": "^5.0.10",
+    "rollup": "^4.29.1",
+    "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-tsconfig-paths": "^1.5.2",
-    "standard": "^17.1.0",
-    "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
+    "ts-jest": "^29.2.5",
     "tsconfig-paths": "^4.2.0",
-    "tslib": "^2.6.2",
+    "tslib": "^2.8.1",
     "typedoc": "^0.25.13",
-    "typedoc-plugin-extras": "^3.0.0",
+    "typedoc-plugin-extras": "^3.1.0",
     "typedoc-plugin-katex": "^0.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2"
   }
 }

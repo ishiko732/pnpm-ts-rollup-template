@@ -30,6 +30,9 @@ importers:
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@9.17.0)
+      node-test-junit-reporter:
+        specifier: ^1.1.5
+        version: 1.1.5
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -600,6 +603,10 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  escape-string-regexp@2.0.0:
+    resolution: {integrity: sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==}
+    engines: {node: '>=8'}
+
   escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
@@ -877,6 +884,13 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  node-test-junit-reporter@1.1.5:
+    resolution: {integrity: sha512-kO8FXwyIkNWMJkAojBQ99v1dx4ai1QPB8XTkggy5bof8816AzkJEn8y9hLqzpDNPekxmogXdjp0wi1OZ5EUOHQ==}
+
+  node-test-parser@https://codeload.github.com/nearform/node-test-parser/tar.gz/859b192ecba39e592157591c1366aa2bd4ff6533:
+    resolution: {tarball: https://codeload.github.com/nearform/node-test-parser/tar.gz/859b192ecba39e592157591c1366aa2bd4ff6533}
+    version: 2.2.1
+
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -1002,6 +1016,10 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
+  stack-utils@2.0.6:
+    resolution: {integrity: sha512-XlkWvfIm6RmsWtNJx+uqtKLS8eqFbxUg0ZzLXqY0caEy9l7hruX8IpiDnjsLavoBgqCCR71TqWO8MaXYheJ3RQ==}
+    engines: {node: '>=10'}
+
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -1114,6 +1132,9 @@ packages:
   wrap-ansi@8.1.0:
     resolution: {integrity: sha512-si7QWI6zUMq56bESFvagtmzMdGOtoxfR+Sez11Mobfc7tm+VkUckk9bW2UeffTGVUbOksxmSw0AA2gs8g71NCQ==}
     engines: {node: '>=12'}
+
+  xml@1.0.1:
+    resolution: {integrity: sha512-huCv9IH9Tcf95zuYCsQraZtWnJvBtLVE0QHMOs8bWyZAFZNDcYjsPq1nEx8jKA9y+Beo9v+7OBPRisQTjinQMw==}
 
   yaml@2.6.1:
     resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
@@ -1591,6 +1612,8 @@ snapshots:
       '@esbuild/win32-ia32': 0.23.1
       '@esbuild/win32-x64': 0.23.1
 
+  escape-string-regexp@2.0.0: {}
+
   escape-string-regexp@4.0.0: {}
 
   eslint-config-prettier@9.1.0(eslint@9.17.0):
@@ -1865,6 +1888,15 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  node-test-junit-reporter@1.1.5:
+    dependencies:
+      node-test-parser: https://codeload.github.com/nearform/node-test-parser/tar.gz/859b192ecba39e592157591c1366aa2bd4ff6533
+      stack-utils: 2.0.6
+      strip-ansi: 7.1.0
+      xml: 1.0.1
+
+  node-test-parser@https://codeload.github.com/nearform/node-test-parser/tar.gz/859b192ecba39e592157591c1366aa2bd4ff6533: {}
+
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -1996,6 +2028,10 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
+  stack-utils@2.0.6:
+    dependencies:
+      escape-string-regexp: 2.0.0
+
   string-width@4.2.3:
     dependencies:
       emoji-regex: 8.0.0
@@ -2107,6 +2143,8 @@ snapshots:
       ansi-styles: 6.2.1
       string-width: 5.1.2
       strip-ansi: 7.1.0
+
+  xml@1.0.1: {}
 
   yaml@2.6.1: {}
 

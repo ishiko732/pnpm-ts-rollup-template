@@ -52,6 +52,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
+          files: report.xml
 
       - name: Publish Package to NPM
         uses: JS-DevTools/npm-publish@v2

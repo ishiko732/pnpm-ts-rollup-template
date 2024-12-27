@@ -34,7 +34,7 @@ export default defineConfig([
       resolve({ preferBuiltins: true }),
       // set target to node18.0 to use BigInt
       esbuild({
-        target: 'node18.0',
+        target: 'node20.0',
         sourceMap: true,
         minify: true
       }),
@@ -69,7 +69,7 @@ export default defineConfig([
       tsConfigPaths(),
       resolve(),
       esbuild({
-        target: 'es2017',
+        target: 'es2022',
         // minify: true,
         sourceMap: true
       }),

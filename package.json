@@ -2,16 +2,26 @@
   "name": "pnpm-rollup-ts-template",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/index.cjs",
-  "umd": "dist/index.umd.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
   "scripts": {
-    "watch": "nodemon",
-    "lint": "standard ./src/**/*.ts ./__tests__/**/*.ts",
+    "watch": "tsx --watch ./src/index.ts",
+    "lint": "eslint ./src & eslint ./__tests__",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
-    "test": "pnpm run lint && jest --config=jest.config.ts --passWithNoTests",
-    "test::coverage": "jest --coverage --config=jest.config.ts",
+    "test": "tsx --test $(find __tests__ -type f -name '*.test.ts')",
+    "test::coverage": "tsx --experimental-test-coverage --test-reporter node-test-junit-reporter --test-reporter-destination report.xml --test-reporter spec --test-reporter-destination stdout --test __tests__/*.test.ts",
     "build::clean": "rimraf ./dist",
     "build::proc": "rollup -c rollup.config.ts --configPlugin esbuild",
     "build::types": "pnpm build::clean && tsc --project ./tsconfig.json --declaration true",
@@ -21,8 +31,8 @@
     "publish::patch": "npm version patch",
     "publish::test": "npx yalc publish",
     "docs:clean": "rimraf ./docs",
-    "docs::geneator": "typedoc",
-    "docs": "pnpm docs:clean && pnpm docs::geneator"
+    "docs::generator": "tsx docs.ts",
+    "docs": "pnpm docs:clean && pnpm docs::generator"
   },
   "keywords": [
     "pnpm",
@@ -33,27 +43,27 @@
   "author": "ishiko",
   "license": "MIT",
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.7",
-    "@types/seedrandom": "^3.0.8",
+    "@eslint/js": "^9.17.0",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@types/node": "^20.17.10",
+    "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
-    "jest": "^29.7.0",
-    "rimraf": "^5.0.5",
-    "rollup": "^4.14.2",
-    "rollup-plugin-dts": "^6.1.0",
+    "node-test-junit-reporter": "^1.1.5",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.29.1",
+    "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-tsconfig-paths": "^1.5.2",
-    "standard": "^17.1.0",
-    "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
-    "tslib": "^2.6.2",
-    "typedoc": "^0.25.13",
-    "typedoc-plugin-extras": "^3.0.0",
+    "tsx": "^4.19.2",
+    "typedoc": "^0.27.6",
+    "typedoc-plugin-extras": "^3.1.0",
     "typedoc-plugin-katex": "^0.1.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2"
+  },
+  "dependencies": {
+    "globals": "^15.14.0"
   }
 }

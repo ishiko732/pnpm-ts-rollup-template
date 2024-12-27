@@ -21,27 +21,29 @@
       "request": "attach",
       "name": "Node: Nodemon",
       "processId": "${command:PickProcess}",
-      "restart": true,
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**"
+      ]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "app",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "env": {
         "DEBUG": "*",
-        "NODE_ENV": "development",
+        "NODE_ENV": "development"
       },
       "outputCapture": "std",
-      "runtimeExecutable": "nodemon",
+      "runtimeExecutable": "tsx",
       "restart": true,
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}",
-      "args": [
-        "${workspaceFolder}/src/index.ts"
-      ],
-    },
+      "args": ["watch", "${workspaceFolder}/src/index.ts"]
+    }
   ]
 }

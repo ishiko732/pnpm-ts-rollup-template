@@ -134,3 +134,5 @@ dist/
 
 # c8 dir
 coverage/
+
+report.xml

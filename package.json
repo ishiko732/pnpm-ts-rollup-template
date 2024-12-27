@@ -21,7 +21,7 @@
     "lint": "eslint ./src & eslint ./__tests__",
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "tsx --test $(find __tests__ -type f -name '*.test.ts')",
-    "test::coverage": "jest --coverage --config=jest.config.ts",
+    "test::coverage": "node --import tsx --experimental-test-coverage --test $(find __tests__ -type f -name '*.test.ts')",
     "build::clean": "rimraf ./dist",
     "build::proc": "rollup -c rollup.config.ts --configPlugin esbuild",
     "build::types": "pnpm build::clean && tsc --project ./tsconfig.json --declaration true",

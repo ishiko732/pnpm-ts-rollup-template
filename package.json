@@ -12,6 +12,7 @@
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "pnpm run lint && jest --config=jest.config.ts --passWithNoTests",
     "test::coverage": "jest --coverage --config=jest.config.ts",
+    "prepare": "npm run build",
     "build::clean": "rimraf ./dist",
     "build::proc": "rollup -c rollup.config.ts --configPlugin esbuild",
     "build::types": "pnpm build::clean && tsc --project ./tsconfig.json --declaration true",

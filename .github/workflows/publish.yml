@@ -53,6 +53,6 @@ jobs:
       - name: Publish Package to NPM
         uses: JS-DevTools/npm-publish@v2
         with:
-          token: ${{secrets.NPM_TOKEN}}
+          token: ${{secrets.npm_token}}
           provenance: true
           tag: latest

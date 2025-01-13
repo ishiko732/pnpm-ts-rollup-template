@@ -1,6 +1,6 @@
 {
   "name": "pnpm-rollup-ts-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.cjs",
   "umd": "dist/index.umd.js",
@@ -12,6 +12,7 @@
     "dev": "rollup -c rollup.config.ts --configPlugin esbuild -w",
     "test": "pnpm run lint && jest --config=jest.config.ts --passWithNoTests",
     "test::coverage": "jest --coverage --config=jest.config.ts",
+    "prepare": "npm run build",
     "build::clean": "rimraf ./dist",
     "build::proc": "rollup -c rollup.config.ts --configPlugin esbuild",
     "build::types": "pnpm build::clean && tsc --project ./tsconfig.json --declaration true",
@@ -29,6 +30,11 @@
     "rollup",
     "typescript",
     "template"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "author": "ishiko",
   "license": "MIT",

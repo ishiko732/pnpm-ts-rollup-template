@@ -31,6 +31,9 @@
     "typescript",
     "template"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "ishiko",
   "license": "MIT",
   "devDependencies": {

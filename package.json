@@ -61,5 +61,13 @@
     "typedoc-plugin-extras": "^3.0.0",
     "typedoc-plugin-katex": "^0.1.2",
     "typescript": "^5.4.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishiko732/pnpm-ts-rollup-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ishiko732/pnpm-ts-rollup-template/issues"
+  },
+  "homepage": "https://github.com/ishiko732/pnpm-ts-rollup-template#readme"
 }

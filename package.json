@@ -1,6 +1,6 @@
 {
   "name": "pnpm-rollup-ts-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/index.cjs",
   "umd": "dist/index.umd.js",
@@ -32,7 +32,9 @@
     "template"
   ],
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "author": "ishiko",
   "license": "MIT",
